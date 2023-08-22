@@ -4,35 +4,35 @@ $user_name = 'Надежда'; // укажите здесь ваше имя
 
 $categories=[
     'boards' => 'Доски и лыжи',
-    'mounts' => 'Крепления',
+    'attachment' => 'Крепления',
     'boots' => 'Ботинки',
-    'cloth' => 'Одежда',
+    'clothing' => 'Одежда',
     'tools' => 'Инструменты',
     'other' => 'Разное'
 ];
 $lots = [
     ['title' => '2014 Rossignol District Snowboard',
-    'category' => 'Доски и лыжи',
+    'category' => $categories['boards'],
     'price' => 10999,
     'url' => 'img/lot-1.jpg'],
     ['title' => 'DC Ply Mens 2016/2017 Snowboard',
-    'category' => 'Доски и лыжи',
+    'category' => $categories['boards'],
     'price' => 159999,
     'url' => 'img/lot-2.jpg'],
     ['title' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-    'category' => 'Крепления',
+    'category' => $categories['attachment'],
     'price' => 8000,
     'url' => 'img/lot-3.jpg'],
     ['title' => 'Ботинки для сноуборда DC Mutiny Charocal',
-    'category' => 'Ботинки',
+    'category' => $categories['boots'],
     'price' => 10999,
     'url' => 'img/lot-4.jpg'],
     ['title' => 'Куртка для сноуборда DC Mutiny Charocal',
-    'category' => 'Одежда',
+    'category' => $categories['clothing'],
     'price' => 7500,
     'url' => 'img/lot-5.jpg'],
     ['title' => 'Маска Oakley Canopy',
-    'category' => 'Разное',
+    'category' => $categories['other'],
     'price' => 5400,
     'url' => 'img/lot-6.jpg']
 ];
@@ -90,8 +90,8 @@ $lots = [
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <?php foreach($categories as $category): ?>
-            <li class="promo__item promo__item--boards">
+            <?php foreach($categories as $key => $category): ?>
+            <li class="promo__item promo__item--<?= $key; ?>">
                 <a class="promo__link" href="pages/all-lots.html"><?= $category ?></a>
             </li>
             <?php endforeach; ?>
@@ -103,7 +103,7 @@ $lots = [
         </div>
         <ul class="lots__list">
             <!--заполните этот список из массива с товарами-->
-            <?php foreach($lots as $lot): ?>
+            <?php foreach($lots as $key => $lot): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?= $lot['url']; ?>" width="350" height="260" alt="<?= $lot['title']; ?>">
