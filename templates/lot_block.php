@@ -11,7 +11,8 @@
             <span class="lot__cost"><?= price_format(strip_tags($lot['price'])); ?></span>
         </div>
         <div class="lot__timer timer">
-                12:23
+                <?php $arr=get_dt_range($lot['date finish']);
+                echo $arr[0].":".$arr[1]; ?>
         </div>
     </div>
 </div>
