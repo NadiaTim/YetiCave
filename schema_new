@@ -28,7 +28,7 @@ COLLATE='utf8mb4_unicode_ci'
 -- Создаем таблицу Лоты
 CREATE TABLE `lots` (
 	`id_lot` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
-	`lot_data_create` TIMESTAMP NOT NULL,
+	`lot_data_create` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`lot_name` VARCHAR(125) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`lot_discription` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
 	`lot_img` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
@@ -53,7 +53,7 @@ ENGINE=InnoDB
 -- Создаем таблицу Ставки
 CREATE TABLE `bets` (
 	`id_bet` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
-	`bet_date` TIMESTAMP NOT NULL,
+	`bet_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`bet_price` FLOAT NOT NULL,
 	`bet_user` INT(8) UNSIGNED ZEROFILL NOT NULL,
 	`bet_lot` INT(8) UNSIGNED ZEROFILL NOT NULL,
