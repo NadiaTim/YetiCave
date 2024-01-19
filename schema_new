@@ -1,0 +1,12 @@
+-- Создаем БД
+CREATE DATABASE `YetiCave` /*!40100 COLLATE 'utf8mb4_unicode_ci' */;
+
+-- Создаем таблицу категории
+CREATE TABLE `categories` (
+	`id_categoty` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`name_category` VARCHAR(128) NOT NULL,
+	`code_category` VARCHAR(128) NOT NULL,
+	PRIMARY KEY (`id_categoty`)
+)
+COLLATE='utf8mb4_unicode_ci'
+;
