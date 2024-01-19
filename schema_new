@@ -1,6 +1,6 @@
 -- Создаем БД
 CREATE DATABASE `YetiCave` /*!40100 COLLATE 'utf8mb4_unicode_ci' */;
-USE `YetiCave_test`;
+USE `YetiCave`;
 
 -- Создаем таблицу категории
 CREATE TABLE `categories` (
