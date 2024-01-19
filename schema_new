@@ -4,7 +4,7 @@ USE `YetiCave`;
 
 -- Создаем таблицу категории
 CREATE TABLE `categories` (
-	`id_categoty` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`id_categoty` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`name_category` VARCHAR(128) NOT NULL,
 	`code_category` VARCHAR(128) NOT NULL,
 	PRIMARY KEY (`id_categoty`)
@@ -14,7 +14,7 @@ COLLATE='utf8mb4_unicode_ci'
 
 -- Создаем таблицу Пользователи
 CREATE TABLE `users` (
-	`id_user` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`id_user` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`user_name` VARCHAR(50) NOT NULL,
 	`user_email` VARCHAR(50) NOT NULL,
 	`user_password` VARCHAR(50) NOT NULL,
@@ -27,7 +27,7 @@ COLLATE='utf8mb4_unicode_ci'
 
 -- Создаем таблицу Лоты
 CREATE TABLE `lots` (
-	`id_lot` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`id_lot` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`lot_data_create` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`lot_name` VARCHAR(125) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`lot_discription` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
@@ -35,9 +35,9 @@ CREATE TABLE `lots` (
 	`lot_start_price` FLOAT NOT NULL,
 	`lot_data_close` TIMESTAMP NOT NULL,
 	`lot_stamp` FLOAT NOT NULL,
-	`lot_id_autor` INT(8) UNSIGNED ZEROFILL NOT NULL,
-	`lot_id_vinner` INT(8) UNSIGNED ZEROFILL NOT NULL,
-	`lot_id_category` INT(8) UNSIGNED ZEROFILL NOT NULL,
+	`lot_id_autor` INT(8) UNSIGNED NOT NULL,
+	`lot_id_vinner` INT(8) UNSIGNED NOT NULL,
+	`lot_id_category` INT(8) UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_lot`) USING BTREE,
 	INDEX `FK_lot_autor_user` (`lot_id_autor`) USING BTREE,
 	INDEX `FK_lot_vinner_user` (`lot_id_vinner`) USING BTREE,
@@ -52,11 +52,11 @@ ENGINE=InnoDB
 
 -- Создаем таблицу Ставки
 CREATE TABLE `bets` (
-	`id_bet` INT(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`id_bet` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`bet_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`bet_price` FLOAT NOT NULL,
-	`bet_user` INT(8) UNSIGNED ZEROFILL NOT NULL,
-	`bet_lot` INT(8) UNSIGNED ZEROFILL NOT NULL,
+	`bet_user` INT(8) UNSIGNED NOT NULL,
+	`bet_lot` INT(8) UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_bet`),
 	CONSTRAINT `FK_bet_user_user` FOREIGN KEY (`bet_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE ON DELETE RESTRICT,
 	CONSTRAINT `FK_bet_lot_lot` FOREIGN KEY (`bet_lot`) REFERENCES `lots` (`id_lot`) ON UPDATE CASCADE ON DELETE RESTRICT
