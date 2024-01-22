@@ -4,7 +4,7 @@ USE `YetiCave`;
 
 -- Создаем таблицу категории
 CREATE TABLE `categories` (
-	`id_categoty` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id_categoty` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`name_category` VARCHAR(128) NOT NULL,
 	`code_category` VARCHAR(128) NOT NULL,
 	PRIMARY KEY (`id_categoty`)
@@ -14,12 +14,12 @@ COLLATE='utf8mb4_unicode_ci'
 
 -- Создаем таблицу Пользователи
 CREATE TABLE `users` (
-	`id_user` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`user_name` VARCHAR(50) NOT NULL,
-	`user_email` VARCHAR(50) NOT NULL,
-	`user_password` VARCHAR(50) NOT NULL,
-	`user_phone` VARCHAR(13) NOT NULL,
-	`user_sing_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`id_user` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_name` VARCHAR(128) NOT NULL,
+	`user_email` VARCHAR(128) NOT NULL UNIQUE,
+	`user_password` CHAR(12) NOT NULL,
+	`user_contacts` TEXT,
+	`user_sing_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id_user`)
 )
 COLLATE='utf8mb4_unicode_ci'
@@ -27,17 +27,17 @@ COLLATE='utf8mb4_unicode_ci'
 
 -- Создаем таблицу Лоты
 CREATE TABLE `lots` (
-	`id_lot` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`lot_data_create` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`lot_name` VARCHAR(125) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`lot_discription` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
-	`lot_img` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`lot_start_price` FLOAT NOT NULL,
-	`lot_data_close` TIMESTAMP NOT NULL,
-	`lot_stamp` FLOAT NOT NULL,
-	`lot_id_autor` INT(8) UNSIGNED NOT NULL,
-	`lot_id_vinner` INT(8) UNSIGNED NOT NULL,
-	`lot_id_category` INT(8) UNSIGNED NOT NULL,
+	`id_lot` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`lot_data_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`lot_name` VARCHAR(125) NOT NULL,
+	`lot_discription` TEXT,
+	`lot_img` VARCHAR(255) NOT NULL,
+	`lot_start_price` INT NOT NULL,
+	`lot_data_close` DATE NOT NULL,
+	`lot_stamp` INT NOT NULL,
+	`lot_id_autor` INT UNSIGNED NOT NULL,
+	`lot_id_vinner` INT UNSIGNED NOT NULL,
+	`lot_id_category` INT UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_lot`) USING BTREE,
 	INDEX `FK_lot_autor_user` (`lot_id_autor`) USING BTREE,
 	INDEX `FK_lot_vinner_user` (`lot_id_vinner`) USING BTREE,
@@ -52,11 +52,11 @@ ENGINE=InnoDB
 
 -- Создаем таблицу Ставки
 CREATE TABLE `bets` (
-	`id_bet` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`bet_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`id_bet` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`bet_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`bet_price` FLOAT NOT NULL,
-	`bet_user` INT(8) UNSIGNED NOT NULL,
-	`bet_lot` INT(8) UNSIGNED NOT NULL,
+	`bet_user` INT UNSIGNED NOT NULL,
+	`bet_lot` INT UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_bet`),
 	CONSTRAINT `FK_bet_user_user` FOREIGN KEY (`bet_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE ON DELETE RESTRICT,
 	CONSTRAINT `FK_bet_lot_lot` FOREIGN KEY (`bet_lot`) REFERENCES `lots` (`id_lot`) ON UPDATE CASCADE ON DELETE RESTRICT
