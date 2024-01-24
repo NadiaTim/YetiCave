@@ -54,7 +54,7 @@ ENGINE=InnoDB
 CREATE TABLE `bets` (
 	`id_bet` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`bet_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`bet_price` FLOAT NOT NULL,
+	`bet_price` INT NOT NULL,
 	`bet_user` INT UNSIGNED NOT NULL,
 	`bet_lot` INT UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_bet`),
@@ -64,3 +64,4 @@ CREATE TABLE `bets` (
 COMMENT='Таблица совершенных ставок'
 COLLATE='utf8mb4_unicode_ci'
 ;
+
