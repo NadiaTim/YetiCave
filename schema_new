@@ -36,7 +36,7 @@ CREATE TABLE `lots` (
 	`lot_data_close` DATE NOT NULL,
 	`lot_stamp` INT NOT NULL,
 	`lot_id_autor` INT UNSIGNED NOT NULL,
-	`lot_id_vinner` INT UNSIGNED NOT NULL,
+	`lot_id_vinner` INT UNSIGNED,
 	`lot_id_category` INT UNSIGNED NOT NULL,
 	PRIMARY KEY (`id_lot`) USING BTREE,
 	INDEX `FK_lot_autor_user` (`lot_id_autor`) USING BTREE,
