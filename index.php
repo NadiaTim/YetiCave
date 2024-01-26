@@ -11,13 +11,13 @@ if (!$con) {
 }
 
 // Получение списка лотов
-$sql = "SELECT * FROM lots"; //Текст SQL-запроса
+$sql = "SELECT * FROM categories"; //Текст SQL-запроса
 $result = mysqli_query($con, $sql); //Ресурс результата выполниения SQL-запроса
 //Проверка выполнения запроса
 if (!$result) { 
     $error = mysqli_error($con);
 }
-$lots = mysqli_fetch_all($result, MYSQLI_ASSOC);//Преобразование ресурса результата в ассоциативный массив лотов
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);//Преобразование ресурса результата в ассоциативный массив лотов
 
 
 
