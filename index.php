@@ -23,6 +23,7 @@ $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);//Преобразован
 $sql =  'SELECT l.lot_name, l.lot_start_price, l.lot_img, c.name_category, l.lot_data_close, l.id_lot ' 
         . 'FROM lots l '
         . 'JOIN categories c ON l.lot_id_category=c.id_categoty '
+        . 'WHERE l.lot_data_close>CURRENT_TIMESTAMP '
         . 'ORDER BY l.lot_data_close DESC'; //Текст SQL-запроса
 $result = mysqli_query($con, $sql); //Ресурс результата выполниения SQL-запроса
 //Проверка выполнения запроса
